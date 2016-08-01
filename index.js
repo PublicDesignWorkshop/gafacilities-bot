@@ -9,9 +9,9 @@ console.log(Date());
 var Bot = new Twit(twitterConfig);
 
 var doTweet;
-var obj = JSON.parse(fs.readFileSync('ga_facilities-index.json', 'utf8') || '{}');
+var obj = JSON.parse(fs.readFileSync(__dirname + '/ga_facilities-index.json', 'utf8') || '{}');
 var index = obj.index || 0;
-var facilities = JSON.parse(fs.readFileSync('ga_facilities.json', 'utf8'));
+var facilities = JSON.parse(fs.readFileSync(__dirname + '/ga_facilities.json', 'utf8'));
 
 doTweet = function() {
   index++;
@@ -51,7 +51,7 @@ doTweet = function() {
 
 
   // save json index
-  jsonfile.writeFile('ga_facilities-index.json', { 'index': index }, { spaces: 2 }, function(err) {
+  jsonfile.writeFile(__dirname + '/ga_facilities-index.json', { 'index': index }, { spaces: 2 }, function(err) {
     console.error(err);
   });
 }
